@@ -1,0 +1,8 @@
+{
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "name": "Lyric Visualizer F.E",
+  "short_name": "Lyric Visualizer F.E",
+  "start_url": ".",
+  "theme_color": "#000000"
+}

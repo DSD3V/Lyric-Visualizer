@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "concurrently": "^6.4.0"
+  },
+  "name": "lyric-visualizer",
+  "scripts": {
+    "backend": "npm start --prefix backend",
+    "frontend": "npm start --prefix frontend",
+    "postinstall": "cd backend && npm i && cd ../frontend && npm i",
+    "start": "concurrently \"npm run frontend\" \"npm run backend\""
+  },
+  "version": "1.0.0"
+}
