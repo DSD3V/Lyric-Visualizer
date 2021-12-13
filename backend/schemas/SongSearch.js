@@ -7,15 +7,10 @@ const SongSearchSchema = new Schema({
   songImage: {
     type: String,
   },
-  wordCounts: {
-    type: Map,
-    of: new Schema({
-      count: Number,
-      word: String,
-    }),
-  },
+  wordCounts: [{ text: String, values: Number}]
+
 });
 
-const SongSearch = model('songSearch', SongSearchSchema);
+const SongSearch = model('SongSearch', SongSearchSchema);
 
 export default SongSearch;
