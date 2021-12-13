@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "axios": "^0.24.0",
-    "concurrently": "^6.4.0"
+    "concurrently": "^6.4.0",
+    "firebase": "^9.6.1",
+    "react-firebase-hooks": "^4.0.1"
   },
   "name": "lyric-visualizer",
   "scripts": {
