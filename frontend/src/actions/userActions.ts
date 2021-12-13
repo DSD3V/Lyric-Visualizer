@@ -1,5 +1,5 @@
 import { createAction, Dispatch } from '@reduxjs/toolkit'
-import { auth } from '../firebase/config'
+import { auth, getProfile } from '../firebase/config'
 
 export const LOG_IN_FAILED = createAction('LOG_IN_FAILED')
 export const LOG_IN_STARTED = createAction('LOG_IN_STARTED')
@@ -29,11 +29,8 @@ export const logIn =
     dispatch(LOG_IN_STARTED())
 
     try {
-      const res = await auth.signInWithEmailAndPassword(
-        userData.email,
-        userData.password
-      )
-      console.log(res)
+      await auth.signInWithEmailAndPassword(userData.email, userData.password)
+      console.log(getProfile())
       dispatch(LOG_IN_SUCCEEDED(userData))
     } catch (err) {
       console.log(err)

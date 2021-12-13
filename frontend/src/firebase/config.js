@@ -20,3 +20,12 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig)
 
 export const auth = app.auth()
+
+let user = ''
+auth.onAuthStateChanged((_user) => {
+  user = _user
+})
+
+export const getProfile = () => {
+  return { user }
+}
