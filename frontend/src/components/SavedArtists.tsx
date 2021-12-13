@@ -1,3 +1,5 @@
+import { Container } from '../styles/GlobalStyles';
+
 export const SavedArtists = () => {
-  return <div>Saved Artists</div>;
+  return <Container>Saved Artists</Container>;
 };

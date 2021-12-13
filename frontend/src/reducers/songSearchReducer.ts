@@ -6,31 +6,31 @@ import {
   SONG_SEARCH_SUCCEEDED,
 } from '../actions/songSearchActions';
 
-interface SongSearchState {
-  hasError: boolean;
-  isLoading: boolean;
-  searchResults: {};
-}
-
 const initialState = {
-  hasError: false,
+  errorMessage: '',
   isLoading: false,
-  searchResults: {},
-} as SongSearchState;
+  searchResult: {},
+} as {
+  errorMessage: string;
+  isLoading: boolean;
+  searchResult: {};
+};
 
 export const songSearchReducer = createReducer(initialState, builder => {
   builder
-    .addCase(SONG_SEARCH_FAILED, state => {
-      state.hasError = true;
+    .addCase(SONG_SEARCH_FAILED, (state, action) => {
+      state.errorMessage = action.payload.errorMessage;
       state.isLoading = false;
     })
 
     .addCase(SONG_SEARCH_STARTED, state => {
+      state.errorMessage = '';
       state.isLoading = true;
     })
 
     .addCase(SONG_SEARCH_SUCCEEDED, (state, action) => {
-      state.searchResults = action.payload.searchResults;
+      state.errorMessage = '';
       state.isLoading = false;
+      state.searchResult = action.payload.searchResult;
     });
 });

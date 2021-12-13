@@ -1,3 +1,5 @@
+import { Container } from '../styles/GlobalStyles';
+
 export const ArtistSearch = () => {
-  return <div>Artist Search</div>;
+  return <Container>Artist Search</Container>;
 };

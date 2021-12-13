@@ -1,33 +1,52 @@
-import { useAppSelector } from './store';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from 'react-router-dom';
 
+import { AuthWrapper } from './auth/AuthWrapper';
+import { AccountSettingsForm } from './components/forms/AccountSettingsForm';
 import { ArtistSearch } from './components/ArtistSearch';
-import { LoginSignup } from './components/LoginSignup';
+import { Home } from './components/Home';
 import { Navbar } from './components/Navbar';
 import { PageNotFound } from './components/PageNotFound';
 import { SavedArtists } from './components/SavedArtists';
 import { SavedSongs } from './components/SavedSongs';
 import { SongSearch } from './components/SongSearch';
 import { TabNavigation } from './components/TabNavigation';
-import { selectUserIsLoggedIn } from './selectors/userSelectors';
+import { selectUserIsAuthenticated } from './selectors/userSelectors';
+import { useAppSelector } from './store';
 
 export const App = () => {
-  const isLoggedIn = useAppSelector(selectUserIsLoggedIn);
+  const isAuthenticated = useAppSelector(selectUserIsAuthenticated);
 
   return (
-    <>
-      <Navbar />
-      {isLoggedIn && <TabNavigation />}
-      <Router>
+    <Router>
+      <AuthWrapper>
+        <Navbar />
+        {isAuthenticated && <TabNavigation />}
         <Routes>
-          <Route element={<LoginSignup />} path='/' />
-          <Route element={<ArtistSearch />} path='/artist-search' />
-          <Route element={<SongSearch />} path='/song-search' />
-          <Route element={<SavedArtists />} path='/saved-artists' />
-          <Route element={<SavedSongs />} path='/saved-songs' />
-          <Route element={<PageNotFound />} path='*' />
+          {isAuthenticated ? (
+            <>
+              <Route path='/' element={<Navigate to='/song-search' />} />
+              <Route path='/login' element={<Navigate to='/song-search' />} />
+              <Route path='/signup' element={<Navigate to='/song-search' />} />
+              <Route
+                path='/account-settings'
+                element={<AccountSettingsForm />}
+              />
+              {/* <Route path='/artist-search' element={<ArtistSearch />} /> */}
+              <Route path='/song-search' element={<SongSearch />} />
+              {/* <Route path='/saved-artists' element={<SavedArtists />} /> */}
+              <Route path='/saved-songs' element={<SavedSongs />} />
+              <Route path='*' element={<PageNotFound />} />
+            </>
+          ) : (
+            <Route path='*' element={<Home />} />
+          )}
         </Routes>
-      </Router>
-    </>
+      </AuthWrapper>
+    </Router>
   );
 };

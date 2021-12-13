@@ -6,17 +6,15 @@ import {
   GET_SAVED_ARTISTS_SUCCEEDED,
 } from '../actions/savedArtistsActions';
 
-interface SavedArtistsState {
-  hasError: boolean;
-  isLoading: boolean;
-  savedArtists: [];
-}
-
 const initialState = {
   hasError: false,
   isLoading: false,
   savedArtists: [],
-} as SavedArtistsState;
+} as {
+  hasError: boolean;
+  isLoading: boolean;
+  savedArtists: [];
+};
 
 export const savedArtistsReducer = createReducer(initialState, builder => {
   builder
@@ -26,11 +24,13 @@ export const savedArtistsReducer = createReducer(initialState, builder => {
     })
 
     .addCase(GET_SAVED_ARTISTS_STARTED, state => {
+      state.hasError = false;
       state.isLoading = true;
     })
 
     .addCase(GET_SAVED_ARTISTS_SUCCEEDED, (state, action) => {
-      state.savedArtists = action.payload.savedArtists;
+      state.hasError = false;
       state.isLoading = false;
+      state.savedArtists = action.payload.savedArtists;
     });
 });

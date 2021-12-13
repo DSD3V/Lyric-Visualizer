@@ -4,12 +4,12 @@ import { RootState } from '../store';
 
 const selectSavedSongsState = (state: RootState) => state.savedSongs;
 
-export const selectGetSavedSongsHasError = createSelector(
+export const selectSavedSongsErrorMessage = createSelector(
   [selectSavedSongsState],
-  state => state.hasError
+  state => state.errorMessage
 );
 
-export const selectGetSavedSongsIsLoading = createSelector(
+export const selectSavedSongsIsLoading = createSelector(
   [selectSavedSongsState],
   state => state.isLoading
 );

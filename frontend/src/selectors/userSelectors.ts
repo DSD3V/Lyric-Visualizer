@@ -9,9 +9,21 @@ export const selectUserData = createSelector(
   state => state.userData
 );
 
-export const selectUserHasError = createSelector(
+export const selectUserEmail = createSelector(
+  [selectUserData],
+  state => state.email
+);
+
+export const selectUserErrorMessage = createSelector(
   [selectUserState],
-  state => state.hasError
+  state => state.errorMessage
+);
+
+export const selectUserId = createSelector([selectUserData], state => state.id);
+
+export const selectUserIsAuthenticated = createSelector(
+  [selectUserData],
+  state => !!state.token
 );
 
 export const selectUserIsLoading = createSelector(
@@ -19,7 +31,7 @@ export const selectUserIsLoading = createSelector(
   state => state.isLoading
 );
 
-export const selectUserIsLoggedIn = createSelector(
-  [selectUserData],
-  state => state.isLoggedIn
+export const selectUserSuccessMessage = createSelector(
+  [selectUserState],
+  state => state.successMessage
 );

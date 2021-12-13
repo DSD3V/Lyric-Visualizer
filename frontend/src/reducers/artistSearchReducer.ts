@@ -6,17 +6,15 @@ import {
   ARTIST_SEARCH_SUCCEEDED,
 } from '../actions/artistSearchActions';
 
-interface ArtistSearchState {
-  hasError: boolean;
-  isLoading: boolean;
-  searchResults: {};
-}
-
 const initialState = {
   hasError: false,
   isLoading: false,
   searchResults: {},
-} as ArtistSearchState;
+} as {
+  hasError: boolean;
+  isLoading: boolean;
+  searchResults: {};
+};
 
 export const artistSearchReducer = createReducer(initialState, builder => {
   builder
@@ -26,11 +24,13 @@ export const artistSearchReducer = createReducer(initialState, builder => {
     })
 
     .addCase(ARTIST_SEARCH_STARTED, state => {
+      state.hasError = false;
       state.isLoading = true;
     })
 
     .addCase(ARTIST_SEARCH_SUCCEEDED, (state, action) => {
-      state.searchResults = action.payload.searchResults;
+      state.hasError = false;
       state.isLoading = false;
+      state.searchResults = action.payload.searchResults;
     });
 });
