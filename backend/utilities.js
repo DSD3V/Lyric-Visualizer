@@ -6,6 +6,7 @@ async function that returns object matching SongSearch schema
     wordCounts: array matching structure needed for react word cloud element here
     https://www.npmjs.com/package/react-wordcloud
 
+returns null if invalid search
  */
 async function getWordCloud(artist, song) {
 	var request = await axios.get(
@@ -25,8 +26,13 @@ async function getWordCloud(artist, song) {
 		} else {
 			image_url = image_split[1].slice(0, -2);
 		}
-
 		let lyric_split = request.data.split("Lyric>");
+
+		//return null if no lyrics
+		if (lyric_split.length <= 1) {
+			return null
+		}
+
 		let lyric_string = lyric_split[1].slice(0, -2);
 
 		lyric_string = lyric_string
@@ -195,7 +201,6 @@ async function getWordCount(lyric) {
         map_list.push(pair);
     }
 	return map_list;
-    
 }
 
 export { getWordCloud };
