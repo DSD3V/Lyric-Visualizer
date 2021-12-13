@@ -1,11 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 import rootRouter from './routes/rootRouter.js';
 
 const app = express();
+app.use(express.json())
 
 // TODO: add Mongo DB URI to .env file
 const db = process.env.MONGO_URI;

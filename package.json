@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^0.24.0",
     "concurrently": "^6.4.0"
   },
   "name": "lyric-visualizer",
