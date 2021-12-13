@@ -1,8 +1,9 @@
 import { Router } from 'express';
 import SongSearch from '../schemas/SongSearch.js';
+import { getWordCloud } from '../utilities.js';
+
 
 const router = Router();
-
 /*
  TODO:
  @GET
@@ -10,8 +11,18 @@ const router = Router();
  Output: SongSearch object: { Song image, Map of words in song -> Count of word }
 */
 
-router.get('/', function (req, res) {
-    res.send('hello world')
+router.get('/', async function (req, res) {
+    //getWordCloud(req.query.artistname, req.query.songname).then(response => console.log(response));
+
+    let word_cloud = await getWordCloud(req.query.artistname, req.query.songname)
+    console.log(word_cloud)
+
+    res.status(201).send({
+        message: 'Successfully Queried Song',
+        data: word_cloud
+    }); 
+
+    
 })
 
 

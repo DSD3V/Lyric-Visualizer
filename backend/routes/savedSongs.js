@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import SavedSongs from '../schemas/SavedSongs.js';
+//import SavedSongs from '../schemas/SavedSongs.js';
 
 const router = Router();
 
@@ -17,6 +17,7 @@ const router = Router();
  Output: Success if succeeded; add SongSearch object to array of SongSearch objects associated with this user in D.B
 */
 
+/*
 router.post('/', function (req, res) {
     var song = new SavedSongs({
         songImage: req.body.songImage,
@@ -34,6 +35,8 @@ router.post('/', function (req, res) {
             res.status(400).send("Unable to add song to the database")
         });  
 });
+*/
+
 /*
  TODO:
  @DELETE
