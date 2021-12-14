@@ -20,9 +20,7 @@ export const Navbar = () => {
   const isLoggedIn = useAppSelector(selectUserIsAuthenticated);
   const userEmail = useAppSelector(selectUserEmail);
 
-  const handleLogOutClicked = useCallback(async () => {
-    dispatch(logOut());
-  }, [dispatch]);
+  const handleLogOutClicked = useCallback(() => dispatch(logOut()), [dispatch]);
 
   return (
     <Nav>

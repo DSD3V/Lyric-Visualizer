@@ -9,11 +9,26 @@ import {
 const initialState = {
   errorMessage: '',
   isLoading: false,
-  searchResult: {},
+  searchResult: {
+    artistName: '',
+    id: '',
+    imageUrl: '',
+    songName: '',
+    wordCounts: [],
+  },
 } as {
   errorMessage: string;
   isLoading: boolean;
-  searchResult: {};
+  searchResult: {
+    artistName: string;
+    id: string;
+    imageUrl: string;
+    songName: string;
+    wordCounts: {
+      text: string;
+      value: number;
+    }[];
+  };
 };
 
 export const songSearchReducer = createReducer(initialState, builder => {

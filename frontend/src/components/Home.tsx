@@ -5,7 +5,7 @@ import { LoginForm } from './forms/LoginForm';
 import { ResetPasswordForm } from './forms/ResetPasswordForm';
 import { SignupForm } from './forms/SignupForm';
 import { HomeContainer, LoginSignupText } from '../styles/HomeStyles';
-import { TitleWordCloud } from './TitleWordCloud';
+import { TitleWordCloud } from './wordclouds/TitleWordCloud';
 
 export const Home = () => (
   <HomeContainer>
@@ -15,10 +15,10 @@ export const Home = () => (
     </LoginSignupText>
     <FormWrapper>
       <Routes>
-        <Route element={<ResetPasswordForm />} path='/forgot-password' />
-        <Route element={<LoginForm />} path='/login' />
-        <Route element={<SignupForm />} path='/signup' />
-        <Route element={<Navigate to='/login' />} path='*' />
+        <Route path='/login' element={<LoginForm />} />
+        <Route path='/signup' element={<SignupForm />} />
+        <Route path='/forgot-password' element={<ResetPasswordForm />} />
+        <Route path='*' element={<Navigate to='/login' />} />
       </Routes>
     </FormWrapper>
   </HomeContainer>

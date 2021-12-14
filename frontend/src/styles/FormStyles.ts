@@ -13,8 +13,7 @@ export const CaptchaDiv = styled.div`
 export const ErrorMessage = styled.p`
   color: ${colors.RED};
   font-size: 0.9rem;
-  margin-top: 5px;
-  text-align: center;
+  margin-top: 1%;
 `;
 
 export const SubmitButtonDiv = styled.div`
@@ -31,6 +30,6 @@ export const GoogleButtonDiv = styled(SubmitButtonDiv)`
 export const SuccessMessage = styled.p`
   color: ${colors.GREEN};
   font-size: 1.1rem;
-  margin-top: 3%;
+  margin-top: 2%;
   text-align: center;
 `;

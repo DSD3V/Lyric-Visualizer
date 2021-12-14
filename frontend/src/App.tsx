@@ -7,11 +7,9 @@ import {
 
 import { AuthWrapper } from './auth/AuthWrapper';
 import { AccountSettingsForm } from './components/forms/AccountSettingsForm';
-import { ArtistSearch } from './components/ArtistSearch';
 import { Home } from './components/Home';
 import { Navbar } from './components/Navbar';
 import { PageNotFound } from './components/PageNotFound';
-import { SavedArtists } from './components/SavedArtists';
 import { SavedSongs } from './components/SavedSongs';
 import { SongSearch } from './components/SongSearch';
 import { TabNavigation } from './components/TabNavigation';
@@ -32,14 +30,12 @@ export const App = () => {
               <Route path='/' element={<Navigate to='/song-search' />} />
               <Route path='/login' element={<Navigate to='/song-search' />} />
               <Route path='/signup' element={<Navigate to='/song-search' />} />
+              <Route path='/song-search' element={<SongSearch />} />
+              <Route path='/saved-songs/*' element={<SavedSongs />} />
               <Route
                 path='/account-settings'
                 element={<AccountSettingsForm />}
               />
-              {/* <Route path='/artist-search' element={<ArtistSearch />} /> */}
-              <Route path='/song-search' element={<SongSearch />} />
-              {/* <Route path='/saved-artists' element={<SavedArtists />} /> */}
-              <Route path='/saved-songs' element={<SavedSongs />} />
               <Route path='*' element={<PageNotFound />} />
             </>
           ) : (

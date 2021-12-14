@@ -1,9 +1,9 @@
-import throttle from 'lodash.throttle';
 import ReactWordcloud from 'react-wordcloud';
+import throttle from 'lodash.throttle';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { TitleContainer } from '../styles/HomeStyles';
-import { getWordCloudOptions, WordCloudDiv } from '../styles/HomeStyles';
+import { TitleContainer } from '../../styles/HomeStyles';
+import { getWordCloudOptions, WordCloudDiv } from '../../styles/HomeStyles';
 
 export const TitleWordCloud = () => {
   const containerRef = useRef(null);
