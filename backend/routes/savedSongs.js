@@ -1,7 +1,8 @@
-import { Router } from 'express';
+import { Router } from 'express'
+import SavedSongs from '../schemas/SavedSongs.js'
 //import SavedSongs from '../schemas/SavedSongs.js';
 
-const router = Router();
+const router = Router()
 
 /*
  TODO:
@@ -9,6 +10,27 @@ const router = Router();
  Input: User email or ID, depends on if Firebase stores unique IDs
  Output: Array of SongSearch objects that this user has saved
 */
+
+router.get('/', async function (req, res) {
+  const user_id = req.query.user_id
+  console.log(user_id)
+
+  // use user id to get the list of SongSearch objects
+
+  SavedSongs.findById(user_id).then((data) => {
+    if (data) {
+      res.status(201).json({
+        message: 'Successfully Queried Saved Songs',
+        data: data.savedSongs
+      })
+    } else {
+      res.status(404).json({
+        message: 'error',
+        data: { reason: "user's data not found" }
+      })
+    }
+  })
+})
 
 /*
  TODO:
@@ -45,9 +67,8 @@ router.post('/', function (req, res) {
 */
 
 router.get('/', function (req, res) {
-    res.send('hello world')
-    //console.log(req.query.sort)
+  res.send('hello world')
+  //console.log(req.query.sort)
 })
 
-
-export default router;
+export default router
