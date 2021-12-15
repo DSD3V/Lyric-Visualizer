@@ -46,7 +46,7 @@ async function getWordCloud(artist, song) {
     let image_split = request.data.split('LyricCovertArtUrl>');
     let image_url;
     if (image_split.length == 1) {
-      image_url = null;
+      image_url = "https://files.radio.co/humorous-skink/staging/default-artwork.png"
     } else {
       image_url = image_split[1].slice(0, -2);
     }
