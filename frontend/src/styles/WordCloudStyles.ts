@@ -15,11 +15,8 @@ export const wordCloudOptions = {
   transitionDuration: 1000,
 };
 
-export const GeneratingWordCloudText = styled.div`
-  left: 50%;
-  margin-top: 20%;
+export const GeneratingWordCloudText = styled.span`
   position: absolute;
-  transform: translateX(-50%);
 `;
 
 export const WordCloudContainer = styled.div`
@@ -32,8 +29,10 @@ export const WordCloudContainer = styled.div`
 `;
 
 export const WordCloudDiv = styled.div`
+  align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
+  justify-content: center;
   margin-top: 2%;
   min-height: 500px;
   padding: 1%;
