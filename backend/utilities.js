@@ -205,7 +205,7 @@ async function getWordCount(lyric) {
     'should',
     'now',
   ];
-  lyric = lyric.replace(/[.,\/#!$?%\^&\*;:{}="\r\_`~()]/g, '');
+  lyric = lyric.replace(/[.,\/#!$?%\^&\*;:{[]}="\r\_`~()]/g, '');
   let lyric_split = lyric.split(/[\n ]/g);
 
   let map = new Map();
