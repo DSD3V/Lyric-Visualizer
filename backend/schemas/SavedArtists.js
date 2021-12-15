@@ -1,14 +1,15 @@
-import mongoose from 'mongoose';
-import ArtistSearch from './ArtistSearch';
+import mongoose from 'mongoose'
+import ArtistSearch from '../schemas/ArtistSearch.js'
 
-const Schema = mongoose.Schema;
-const model = mongoose.model;
+const ArtistSearchSchema = ArtistSearch.schema
+const Schema = mongoose.Schema
+const model = mongoose.model
 
 const SavedArtistsSchema = new Schema({
   userId /*or email*/: String /*or Number*/,
-  savedArtists: [ArtistSearch],
-});
+  savedArtists: [ArtistSearchSchema]
+})
 
-const ArtistSearch = model('artistSearch', ArtistSearchSchema);
+const SavedArtists = model('SavedArtists', SavedArtistsSchema)
 
-export default ArtistSearch;
+export default SavedArtists

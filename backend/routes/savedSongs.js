@@ -11,13 +11,13 @@ const router = Router()
  Output: Array of SongSearch objects that this user has saved
 */
 
-router.get('/', async function (req, res) {
-  const user_id = req.query.user_id
+router.get('/:id?', async function (req, res) {
+  const user_id = req.params.id
   console.log(user_id)
 
   // use user id to get the list of SongSearch objects
 
-  SavedSongs.findById(user_id).then((data) => {
+  SavedSongs.findOne({ userId: user_id }).then((data) => {
     if (data) {
       res.status(201).json({
         message: 'Successfully Queried Saved Songs',
@@ -67,8 +67,29 @@ router.post('/', function (req, res) {
 */
 
 router.get('/', function (req, res) {
-  res.send('hello world')
+  SavedSongs.find().then((users) => {
+    res.status(201).json({
+      data: users
+    })
+  })
   //console.log(req.query.sort)
+})
+
+router.delete('/', function (req, res) {
+  const user_id = req.params.id
+  SavedSongs.deleteOne({ userId: user_id }).then((data) => {
+    if (data) {
+      res.status(200).json({
+        message: 'OK',
+        data: { finished: 'user deleted' }
+      })
+    } else {
+      res.status(404).json({
+        message: 'error',
+        data: { reason: 'user not found' }
+      })
+    }
+  })
 })
 
 export default router
