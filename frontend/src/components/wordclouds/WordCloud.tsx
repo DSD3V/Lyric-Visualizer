@@ -1,5 +1,5 @@
-import { useCallback, useRef, useState } from 'react';
 import ReactWordcloud from 'react-wordcloud';
+import { useCallback, useRef, useState } from 'react';
 
 import { useMutationObservable } from '../../hooks/mutationHooks';
 import {
