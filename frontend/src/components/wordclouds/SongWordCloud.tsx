@@ -6,6 +6,8 @@ import {
   SAVE_SONG_FAILED,
   saveSong,
 } from '../../actions/savedSongsActions';
+import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
+import { Song } from '../../objects';
 import {
   selectSavedSongs,
   selectSavedSongsIsLoading,
@@ -18,7 +20,6 @@ import {
   selectSongSearchResult,
 } from '../../selectors/songSearchSelectors';
 import { selectUserId } from '../../selectors/userSelectors';
-import { useAppDispatch, useAppSelector } from '../../store';
 import { ErrorMessage, SuccessMessage } from '../../styles/FormStyles';
 import {
   SongWordCloudContainer,
@@ -49,8 +50,8 @@ export const SongWordCloud = () => {
   const handleSaveWordCloud = useCallback(
     () =>
       dispatch(
-        savedSongs.find(
-          song =>
+        savedSongs?.find(
+          (song: Song) =>
             song.artistName === searchResult.artistName &&
             song.songName === searchResult.songName
         )
@@ -77,7 +78,9 @@ export const SongWordCloud = () => {
             >
               Save Word Cloud
             </Button>
-            {isSavedSongsLoading && <div>Saving song wordcloud...</div>}
+            {isSavedSongsLoading && (
+              <div className='mt-3'>Saving song wordcloud...</div>
+            )}
             {!!savedSongsErrorMessage && (
               <ErrorMessage>{savedSongsErrorMessage}</ErrorMessage>
             )}

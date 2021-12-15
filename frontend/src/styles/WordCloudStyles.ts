@@ -1,15 +1,26 @@
 import styled from 'styled-components';
 import { wordCloudColors } from './constants';
 
+const fontSizes = [30, 80];
+const rotationAngles = [0, 0];
+
 export const wordCloudOptions = {
   colors: wordCloudColors,
+  enableOptimizations: true,
   enableTooltip: false,
-  fontSizes: [30, 80] as [number, number],
+  fontSizes: fontSizes as [number, number],
   padding: 20,
-  rotationAngles: [0, 0] as [number, number],
+  rotationAngles: rotationAngles as [number, number],
   rotations: 0,
-  transitionDuration: 2000,
+  transitionDuration: 1000,
 };
+
+export const GeneratingWordCloudText = styled.div`
+  left: 50%;
+  margin-top: 20%;
+  position: absolute;
+  transform: translateX(-50%);
+`;
 
 export const WordCloudContainer = styled.div`
   align-items: center;

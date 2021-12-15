@@ -3,12 +3,12 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 
-const SongSearchSchema = new Schema({
-  songImage: {
-    type: String,
-  },
-  wordCounts: [{ text: String, values: Number}]
-
+export const SongSearchSchema = new Schema({
+  artistName: String,
+  imageUrl: String,
+  songId: String,
+  songName: String,
+  wordCounts: [{ text: String, value: Number }],
 });
 
 const SongSearch = model('SongSearch', SongSearchSchema);

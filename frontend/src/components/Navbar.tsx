@@ -1,11 +1,11 @@
 import { useCallback } from 'react';
 
 import { logOut } from '../actions/userActions';
+import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
 import {
   selectUserEmail,
   selectUserIsAuthenticated,
 } from '../selectors/userSelectors';
-import { useAppDispatch, useAppSelector } from '../store';
 import {
   Nav,
   NavButton,

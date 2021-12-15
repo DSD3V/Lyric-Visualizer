@@ -16,12 +16,14 @@ export const getWordCloudOptions = (
       : width > FONT_HEIGHT_BREAKPOINTS[1]
       ? 65
       : 50);
+  const fontSizes = [fontSize, fontSize];
+  const rotationAngles = [0, 0];
   return {
     colors: wordCloudColors,
     enableTooltip: false,
-    fontSizes: [fontSize, fontSize] as [number, number],
+    fontSizes: fontSizes as [number, number],
     padding: 0,
-    rotationAngles: [0, 0] as [number, number],
+    rotationAngles: rotationAngles as [number, number],
     rotations: 0,
     transitionDuration: 2000,
   };

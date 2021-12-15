@@ -7,11 +7,11 @@ import * as yup from 'yup';
 
 import { CLEAR_FORM, logInWithGoogle, signUp } from '../../actions/userActions';
 import { GoogleButton } from './GoogleButton';
+import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
 import {
   selectUserErrorMessage,
   selectUserIsLoading,
 } from '../../selectors/userSelectors';
-import { useAppDispatch, useAppSelector } from '../../store';
 import {
   CaptchaDiv,
   ErrorMessage,

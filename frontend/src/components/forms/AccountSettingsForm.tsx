@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useLayoutEffect } from 'react';
+import { useCallback, useLayoutEffect } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -7,12 +7,12 @@ import * as yup from 'yup';
 
 import { CLEAR_FORM, updateAccountSettings } from '../../actions/userActions';
 import { FormWrapper } from './FormWrapper';
+import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
 import {
   selectUserErrorMessage,
   selectUserIsLoading,
   selectUserSuccessMessage,
 } from '../../selectors/userSelectors';
-import { useAppDispatch, useAppSelector } from '../../store';
 import {
   ErrorMessage,
   SubmitButtonDiv,
@@ -77,6 +77,8 @@ export const AccountSettingsForm = () => {
     isChangeAccountSettingsLoading,
     reset,
   ]);
+
+  const handleReturnToSavedSongs = useCallback(() => navigate(-1), [navigate]);
 
   const handleSaveChangesClicked = handleSubmit(async ({ email, password }) => {
     if (!email && !password) {
@@ -157,8 +159,8 @@ export const AccountSettingsForm = () => {
           </Form>
         </Card.Body>
         <div className='mb-3 mt-2 text-center'>
-          <StyledLink onClick={() => navigate(-1)} to='/'>
-            Return to Application
+          <StyledLink onClick={handleReturnToSavedSongs} to='/'>
+            Return to Saved Songs
           </StyledLink>
         </div>
       </Card>

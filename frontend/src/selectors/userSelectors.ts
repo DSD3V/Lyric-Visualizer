@@ -19,7 +19,10 @@ export const selectUserErrorMessage = createSelector(
   state => state.errorMessage
 );
 
-export const selectUserId = createSelector([selectUserData], state => state.id);
+export const selectUserId = createSelector(
+  [selectUserData],
+  state => state.userId
+);
 
 export const selectUserIsAuthenticated = createSelector(
   [selectUserData],

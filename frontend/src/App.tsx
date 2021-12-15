@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Navigate,
@@ -5,6 +6,7 @@ import {
   Routes,
 } from 'react-router-dom';
 
+import { logOut } from './actions/userActions';
 import { AuthWrapper } from './auth/AuthWrapper';
 import { AccountSettingsForm } from './components/forms/AccountSettingsForm';
 import { Home } from './components/Home';
@@ -13,11 +15,18 @@ import { PageNotFound } from './components/PageNotFound';
 import { SavedSongs } from './components/SavedSongs';
 import { SongSearch } from './components/SongSearch';
 import { TabNavigation } from './components/TabNavigation';
+import { useAppDispatch, useAppSelector } from './hooks/storeHooks';
 import { selectUserIsAuthenticated } from './selectors/userSelectors';
-import { useAppSelector } from './store';
 
 export const App = () => {
+  const dispatch = useAppDispatch();
   const isAuthenticated = useAppSelector(selectUserIsAuthenticated);
+
+  useEffect(() => {
+    return () => {
+      dispatch(logOut());
+    };
+  }, [dispatch]);
 
   return (
     <Router>

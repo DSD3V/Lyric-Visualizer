@@ -1,16 +1,15 @@
 import mongoose from 'mongoose';
-//import SongSearch from './SongSearch';
-import SongSearch from '../schemas/SongSearch.js';
 
+import { SongSearchSchema } from './SongSearch.js';
 
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 
 const SavedSongsSchema = new Schema({
-  userId /*or email*/: String /*or Number*/,
-  savedSongs: [SongSearch], 
+  userId: String,
+  savedSongs: [SongSearchSchema],
 });
 
-const SavedSongs = model('SavedSongs', SavedSongsSchema);
+const SavedSongs = model('savedSongs', SavedSongsSchema);
 
 export default SavedSongs;

@@ -11,20 +11,20 @@ import {
 
 export const SongInGrid = ({
   artistName,
-  id,
   imageUrl,
+  songId,
   songName,
 }: {
   artistName: string;
-  id: string;
   imageUrl: string;
+  songId: string;
   songName: string;
 }) => {
   const navigate = useNavigate();
 
   const handleSavedSongClicked = useCallback(
-    () => navigate(`/saved-songs/${id}`),
-    [id, navigate]
+    () => navigate(`/saved-songs/${songId}`),
+    [songId, navigate]
   );
 
   return (

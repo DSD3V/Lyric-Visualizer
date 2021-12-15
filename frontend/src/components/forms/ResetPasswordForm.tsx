@@ -5,12 +5,12 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { CLEAR_FORM, resetPassword } from '../../actions/userActions';
+import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
 import {
   selectUserErrorMessage,
   selectUserIsLoading,
   selectUserSuccessMessage,
 } from '../../selectors/userSelectors';
-import { useAppDispatch, useAppSelector } from '../../store';
 import {
   ErrorMessage,
   SubmitButtonDiv,

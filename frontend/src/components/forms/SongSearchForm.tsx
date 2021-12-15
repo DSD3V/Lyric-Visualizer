@@ -4,11 +4,11 @@ import { useForm } from 'react-hook-form';
 
 import { CLEAR_MESSAGES } from '../../actions/savedSongsActions';
 import { getSongSearchResult } from '../../actions/songSearchActions';
+import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
 import {
   selectSongSearchErrorMessage,
   selectSongSearchIsLoading,
 } from '../../selectors/songSearchSelectors';
-import { useAppDispatch, useAppSelector } from '../../store';
 import { ErrorMessage, SubmitButtonDiv } from '../../styles/FormStyles';
 import { SearchInputsDiv } from '../../styles/SongSearchStyles';
 import { REQUIRED_ERROR_MESSAGE } from '../../validation';
@@ -27,7 +27,6 @@ export const SongSearchForm = () => {
   useLayoutEffect(() => {
     if (!isSongSearchLoading && !songSearchErrorMessage) {
       dispatch(CLEAR_MESSAGES());
-      reset();
     }
   }, [dispatch, isSongSearchLoading, reset, songSearchErrorMessage]);
 
@@ -54,6 +53,14 @@ export const SongSearchForm = () => {
               </Form.Label>
               <Form.Control
                 {...register('artist', {
+                  maxLength: {
+                    message: 'Artist name must be between 2 and 75 characters.',
+                    value: 75,
+                  },
+                  minLength: {
+                    message: 'Artist name must be between 2 and 75 characters.',
+                    value: 2,
+                  },
                   required: {
                     message: REQUIRED_ERROR_MESSAGE,
                     value: true,
@@ -71,6 +78,14 @@ export const SongSearchForm = () => {
               </Form.Label>
               <Form.Control
                 {...register('song', {
+                  maxLength: {
+                    message: 'Song name must be between 2 and 125 characters.',
+                    value: 125,
+                  },
+                  minLength: {
+                    message: 'Song name must be between 2 and 125 characters.',
+                    value: 2,
+                  },
                   required: {
                     message: REQUIRED_ERROR_MESSAGE,
                     value: true,

@@ -5,30 +5,22 @@ import {
   SONG_SEARCH_STARTED,
   SONG_SEARCH_SUCCEEDED,
 } from '../actions/songSearchActions';
+import { Song } from '../objects';
 
 const initialState = {
   errorMessage: '',
   isLoading: false,
   searchResult: {
     artistName: '',
-    id: '',
     imageUrl: '',
+    songId: '',
     songName: '',
     wordCounts: [],
   },
 } as {
   errorMessage: string;
   isLoading: boolean;
-  searchResult: {
-    artistName: string;
-    id: string;
-    imageUrl: string;
-    songName: string;
-    wordCounts: {
-      text: string;
-      value: number;
-    }[];
-  };
+  searchResult: Song;
 };
 
 export const songSearchReducer = createReducer(initialState, builder => {

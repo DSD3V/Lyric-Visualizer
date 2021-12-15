@@ -14,6 +14,8 @@ export const ErrorMessage = styled.p`
   color: ${colors.RED};
   font-size: 0.9rem;
   margin-top: 1%;
+  max-width: 200px;
+  text-align: center;
 `;
 
 export const SubmitButtonDiv = styled.div`

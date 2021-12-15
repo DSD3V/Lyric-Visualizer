@@ -18,6 +18,7 @@ import {
   UPDATE_ACCOUNT_SETTINGS_SUCCEEDED,
   UPDATE_ACCOUNT_SETTINGS_STARTED,
 } from '../actions/userActions';
+import { User } from '../objects';
 
 const initialState = {
   errorMessage: '',
@@ -25,18 +26,14 @@ const initialState = {
   successMessage: '',
   userData: {
     email: '',
-    id: '',
     token: localStorage.getItem('token'),
+    userId: '',
   },
 } as {
   errorMessage: string;
   isLoading: boolean;
   successMessage: '';
-  userData: {
-    email: string;
-    id: string;
-    token: string;
-  };
+  userData: User;
 };
 
 export const userReducer = createReducer(initialState, builder => {

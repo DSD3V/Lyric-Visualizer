@@ -13,27 +13,21 @@ import {
   SAVE_SONG_STARTED,
   SAVE_SONG_SUCCEEDED,
 } from '../actions/savedSongsActions';
-
-interface Song {
-  artistName: string;
-  id: string;
-  imageUrl: string;
-  songName: string;
-  wordCounts: {
-    text: '';
-    value: 0;
-  }[];
-}
+import { Song } from '../objects';
 
 const initialState = {
   errorMessage: '',
+  isDeleteLoading: false,
   isLoading: false,
-  savedSongs: [],
+  lastDeletedSongId: '',
+  savedSongs: null,
   successMessage: '',
 } as {
   errorMessage: string;
+  isDeleteLoading: boolean;
   isLoading: boolean;
-  savedSongs: Song[];
+  lastDeletedSongId: string;
+  savedSongs: null | Song[];
   successMessage: string;
 };
 
@@ -55,15 +49,19 @@ export const savedSongsReducer = createReducer(initialState, builder => {
 
     .addCase(DELETE_SONG_STARTED, state => {
       state.errorMessage = '';
-      state.isLoading = true;
+      state.isDeleteLoading = true;
     })
 
     .addCase(DELETE_SONG_SUCCEEDED, (state, action) => {
       state.errorMessage = '';
-      state.isLoading = false;
-      state.savedSongs = state.savedSongs.filter(
-        song => song.id !== action.payload.deletedSongId
-      );
+      state.isDeleteLoading = false;
+      if (!!state.lastDeletedSongId) {
+        state.savedSongs =
+          state.savedSongs?.filter(
+            song => song.songId !== state.lastDeletedSongId
+          ) || state.savedSongs;
+      }
+      state.lastDeletedSongId = action.payload.deletedSongId;
       state.successMessage = action.payload.successMessage;
     })
 
@@ -94,9 +92,16 @@ export const savedSongsReducer = createReducer(initialState, builder => {
     })
 
     .addCase(SAVE_SONG_SUCCEEDED, (state, action) => {
+      const { savedSong, successMessage } = action.payload;
       state.errorMessage = '';
       state.isLoading = false;
-      state.savedSongs = [...state.savedSongs, action.payload.savedSong];
-      state.successMessage = action.payload.successMessage;
+      state.lastDeletedSongId =
+        state.lastDeletedSongId === savedSong.songId
+          ? ''
+          : state.lastDeletedSongId;
+      state.savedSongs = !!state.savedSongs
+        ? [...state.savedSongs, savedSong]
+        : [savedSong];
+      state.successMessage = successMessage;
     });
 });

@@ -3,8 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { LOG_IN_SUCCEEDED, SIGN_UP_SUCCEEDED } from '../actions/userActions';
 import { auth } from './firebase';
+import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
 import { selectUserIsAuthenticated } from '../selectors/userSelectors';
-import { useAppDispatch, useAppSelector } from '../store';
 
 export const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
   const isAuthenticated = useAppSelector(selectUserIsAuthenticated);
@@ -16,19 +16,27 @@ export const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
         const wasAlreadyAuthenticated = isAuthenticated;
+        const {
+          email,
+          metadata: { creationTime, lastSignInTime },
+          refreshToken,
+          uid: userId,
+        } = user;
+
         dispatch(
-          currentRoute === '/login'
-            ? LOG_IN_SUCCEEDED({
-                email: user.email,
-                id: user.uid,
-                token: user.refreshToken,
+          creationTime === lastSignInTime
+            ? SIGN_UP_SUCCEEDED({
+                email,
+                userId,
+                token: refreshToken,
               })
-            : SIGN_UP_SUCCEEDED({
-                email: user.email,
-                id: user.uid,
-                token: user.refreshToken,
+            : LOG_IN_SUCCEEDED({
+                email,
+                userId,
+                token: refreshToken,
               })
         );
+
         if (!wasAlreadyAuthenticated) {
           navigate('/');
         }
