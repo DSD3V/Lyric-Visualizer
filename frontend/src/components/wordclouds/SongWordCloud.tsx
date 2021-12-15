@@ -44,7 +44,7 @@ export const SongWordCloud = () => {
     if (!!savedSongsErrorMessage) {
       dispatch(CLEAR_SUCCESS_MESSAGE());
     }
-  }, [savedSongsErrorMessage]);
+  }, [dispatch, savedSongsErrorMessage]);
 
   const handleSaveWordCloud = useCallback(
     () =>

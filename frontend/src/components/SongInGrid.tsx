@@ -24,7 +24,7 @@ export const SongInGrid = ({
 
   const handleSavedSongClicked = useCallback(
     () => navigate(`/saved-songs/${id}`),
-    []
+    [id, navigate]
   );
 
   return (

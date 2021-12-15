@@ -15,8 +15,11 @@ export const ButtonsDiv = styled.div`
 
 export const ReturnLink = styled(StyledLink)`
   margin-left: 50%;
-  padding-right: 20px;
   transform: translateX(-50%);
+  @media (max-width: 850px) {
+    margin-left: 0;
+    transform: none;
+  }
 `;
 
 export const SavedSongDiv = styled.div`
@@ -31,7 +34,7 @@ export const SavedSongDiv = styled.div`
   padding: 1% 4% 0 4%;
   text-align: center;
   transition: 0.4s;
-  width: 340px;
+  width: 310px;
 
   :hover {
     background-color: ${colors.LIGHT_GREY_HOVER};
@@ -51,9 +54,9 @@ export const SavedSongName = styled.span`
 export const SavedSongsGrid = styled.div`
   align-items: center;
   display: grid;
-  gap: 10%;
-  grid-auto-rows: max(300px, auto);
-  grid-template-columns: repeat(auto-fill, 300px);
+  gap: 2em;
+  grid-auto-rows: max(310px, auto);
+  grid-template-columns: repeat(auto-fill, 310px);
   justify-content: center;
   justify-items: center;
   margin: 2% auto;
