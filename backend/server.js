@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
 
   const __dirname = dirname(fileURLToPath(import.meta.url));
 
-  app.get('/*', (_, res) => {
+  app.get('*', (_, res) => {
     res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'));
   });
 }
