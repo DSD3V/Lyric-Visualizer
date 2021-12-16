@@ -33,7 +33,7 @@ export const SongInGrid = ({
         <SavedSongName>{songName}</SavedSongName>
         <ArtistName>{artistName}</ArtistName>
       </TitleDiv>
-      <SavedSongImg alt='song cover' key={imageUrl} src={imageUrl} />
+      <SavedSongImg alt='song cover' src={imageUrl} />
     </SavedSongDiv>
   );
 };
