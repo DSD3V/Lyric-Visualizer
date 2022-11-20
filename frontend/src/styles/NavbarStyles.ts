@@ -27,7 +27,6 @@ export const NavButton = styled(Link)`
   padding: 3px 10px;
   text-align: center;
   text-decoration: none;
-  width: 75px;
 
   :hover {
     color: white;
@@ -46,6 +45,7 @@ export const NavButtonsContainer = styled.div`
 export const NavButtonsDiv = styled.div`
   display: flex;
   margin-right: 3%;
+  width: 100%;
 `;
 
 export const NavTitle = styled(Link)`

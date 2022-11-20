@@ -16,7 +16,7 @@ mongoose
     useNewUrlParser: true,
   })
   .then(() => console.log('Connected to MongoDB Database.'))
-  .catch(error => console.log(error));
+  .catch(console.error);
 
 app.use('/', rootRouter);
 

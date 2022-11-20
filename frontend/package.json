@@ -46,7 +46,7 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "start": "react-scripts start"
+    "start": "react-scripts --openssl-legacy-provider start"
   },
   "version": "0.1.0"
 }
